@@ -1,13 +1,14 @@
 const {Router} = require('express');
-const { getBlog, addBlog, createBlog, editBlog, updateBlog, deleteBlog} = require('../controllers/blog')
+const { home, getBlog, addBlog, createBlog, editBlog, updateBlog, deleteBlog} = require('../controllers/blog')
 const {checkForAuthentcation} = require('../middlewares/authentication')
 const router = Router()
 
-router.get("/get/:slug",checkForAuthentcation("accessToken"), getBlog)
+router.get("/",checkForAuthentcation("accessToken"), home)
 router.get("/addBlog",checkForAuthentcation("accessToken"), addBlog)
+router.get("/:slug",checkForAuthentcation("accessToken"), getBlog)
 router.post("/createBlog",checkForAuthentcation("accessToken"), createBlog)
-// router.get("/edit/:slug", editBlog)
-// router.post("/update/:slug", updateBlog)
-// router.post("/delete/:slug", deleteBlog)
+router.get("/edit/:slug", checkForAuthentcation("accessToken"),editBlog)
+router.post("/update/:slug", checkForAuthentcation("accessToken"), updateBlog)
+router.post("/delete/:slug", checkForAuthentcation("accessToken"), deleteBlog)
 
 module.exports = router

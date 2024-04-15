@@ -17,10 +17,9 @@ app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 app.use('/user',userRoutes)
 app.use('/blog',blogRoutes)
-app.get('/',checkForAuthentcation("accessToken"),(req,res) => {
-    res.render("home",{
-       user : req.user
-    })
-})
+app.use('/home',blogRoutes)
+app.use((req, res, next) => {
+    return res.status(404).redirect('/home');
+});
 
 app.listen(PORT,() => console.log(`Server running on ${PORT}`))
