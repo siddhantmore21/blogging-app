@@ -61,12 +61,12 @@ const createBlog = async (req, res) => {
 } 
 
 const updateBlog = async (req, res) => {
-    const {title,slug,description,content,category,tags} = req.body
-    if(!slug)
+    const {title,slug,oldSlug,description,content,category,tags} = req.body
+    if(!oldSlug)
     {
         return res.redirect('/home')
     }   
-    const blog = await Blog.findOneAndUpdate({slug},{
+    const blog = await Blog.findOneAndUpdate({slug : oldSlug},{
         title,
         slug,
         description,
@@ -75,7 +75,8 @@ const updateBlog = async (req, res) => {
         tags,
         createdBy : req.user._id
     })
-    return res.redirect(`/blog/${slug}`)
+    console.log(blog,title,slug,oldSlug,category,tags)
+    return res.redirect(`/blog/edit/${slug}`)
 } 
 
 const deleteBlog = async (req, res) => {
@@ -84,7 +85,7 @@ const deleteBlog = async (req, res) => {
     {
         return res.redirect('/home')
     }   
-    
+
     const blog = await Blog.findOneAndDelete({slug})
     return res.redirect(`/home`)
 } 

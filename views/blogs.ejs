@@ -64,10 +64,10 @@
                             <p class="card-text"><%= blog.description %></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="/blog/<%= blog.slug %>" class="card-link">Read More</a>
+                            <a href="/blog/<%= blog.slug %>" target="_blank" class="card-link">Read More</a>
                             <div class="d-flex">
                                 <% if (locals.user._id == blog.createdBy) { %>
-                                    <a href="/blog/edit/<%= blog.slug %>" class="card-link text-success">edit</a>
+                                    <a href="/blog/edit/<%= blog.slug %>" target="_blank" class="card-link text-success">edit</a>
                                     <form action="/blog/delete/<%= blog.slug %>" method="post">
                                         <button class="btn btn-outline-none text-danger p-0 pl-4" type="submit" onclick="return confirm('Are you sure you want to delete this blog?')">delete</button>
                                     </form>

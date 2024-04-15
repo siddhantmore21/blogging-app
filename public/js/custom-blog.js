@@ -5,24 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         event.preventDefault();
 
-        // const email = addBlogForm.querySelector('input[name="email"]').value.trim();
-        // const password = addBlogForm.querySelector('input[name="password"]').value.trim();
-
-
-        // // Validate Email
-        // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        // if (!emailRegex.test(email)) {
-        //     alert('Please enter a valid email address.');
-        //     return;
-        // }
-
-
-        // // Validate Password
-        // if (password === '') {
-        //     alert('Please enter a password.');
-        //     return;
-        // }
+        // Title validation
+        const title = document.getElementById('title').value;
         
+        if (title.length < 10 || title.length > 250) {
+            alert('Title must be between 10 and 250 characters.');
+            return;
+            
+        }
+
+        // Description validation
+        const description = document.getElementById('description').value;
+        
+        if (description.length < 50 || description.length > 500) {
+           alert('Description must be between 50 and 500 characters.');
+           return;
+        }
+        
+        // Content validation
+        const content = document.getElementById('content').value;
+        
+        if (content.length < 1000 || content.length > 50000) {
+            alert('Content must be between 1000 and 50000 characters.');
+            return;
+        }
 
         // If all validations pass, you can submit the form or perform other actions here
         addBlogForm.submit();  // Uncomment this line to submit the form
