@@ -55,7 +55,8 @@ const createBlog = async (req, res) => {
         content,
         category,
         tags,
-        createdBy : req.user._id
+        createdBy : req.user._id,
+        displayImage : req.file?.filename
     })
     return res.redirect('/')
 } 
@@ -73,7 +74,8 @@ const updateBlog = async (req, res) => {
         content,
         category,
         tags,
-        createdBy : req.user._id
+        createdBy : req.user._id,
+        displayImage : req.file?.filename ? req.file?.filename : 'default.png'
     })
     console.log(blog,title,slug,oldSlug,category,tags)
     return res.redirect(`/blog/edit/${slug}`)
