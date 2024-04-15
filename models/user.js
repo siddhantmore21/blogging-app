@@ -67,8 +67,8 @@ UserSchema.static('checkPassword', async function (email,password){
     if(hashedPassword !== hashedInputPassword) throw new Error('Invalid Password');
 
     const accessToken = createAccessToken(user)
-
-    return {user,accessToken}
+    
+    return accessToken
 })
 
 module.exports = model('User',UserSchema)

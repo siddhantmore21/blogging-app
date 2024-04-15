@@ -25,10 +25,8 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
     try{
         const {email, password} = req.body
-        const {user,accessToken} = await User.checkPassword(email,password)
-        req.user = user
+        const accessToken = await User.checkPassword(email,password)
 
-        console.log(user)
         if(accessToken)
         {
             return res.cookie("accessToken",accessToken).redirect('/')
