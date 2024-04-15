@@ -68,7 +68,7 @@ UserSchema.static('checkPassword', async function (email,password){
 
     const accessToken = createAccessToken(user)
 
-    return accessToken
+    return {user,accessToken}
 })
 
 module.exports = model('User',UserSchema)

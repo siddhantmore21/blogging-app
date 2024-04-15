@@ -1,7 +1,7 @@
 const {verifyToken} = require('../services/authentication')
 const checkForAuthentcation = (tokenName) => {
     return (req,res,next) => {
-        const accessToken = req.cookies[tokenName]
+        const accessToken = req.cookies[tokenName]  
         if(!accessToken)
         {
             next()
@@ -12,8 +12,10 @@ const checkForAuthentcation = (tokenName) => {
             req.user = payload
             next()
         }
-        catch(e){}
-        next()
+        catch(e)
+        {
+            next()
+        }
     } 
 }
 

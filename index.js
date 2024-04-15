@@ -15,10 +15,9 @@ app.set('views',path.resolve('./views'))
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
-app.use(checkForAuthentcation("accessToken"))
 app.use('/user',userRoutes)
 app.use('/blog',blogRoutes)
-app.get('/',(req,res) => {
+app.get('/',checkForAuthentcation("accessToken"),(req,res) => {
     res.render("home",{
        user : req.user
     })
